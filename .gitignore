@@ -1,0 +1,9 @@
+# Ignore virtual environment
+.venv/
+
+# Ignore all CSV files
+*.csv
+
+# Ignore all "data" folders but not their .gitkeep files
+**/data/*
+!**/data/.gitkeep

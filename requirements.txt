@@ -1,0 +1,12 @@
+fastapi
+uvicorn
+sqlalchemy
+pydantic[dotenv]
+aiosqlite
+scikit-learn
+pandas
+joblib
+python-dotenv
+httpx
+pytest
+numpy
