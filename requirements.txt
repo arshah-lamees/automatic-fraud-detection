@@ -1,3 +1,5 @@
+#install these after creating virtual environment in main directory
+
 fastapi
 uvicorn
 sqlalchemy
