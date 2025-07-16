@@ -1,5 +1,5 @@
 """
-app/model.py
+app/predict.py
 Handles model loading and prediction logic for the Fraud Detection API.
 - Loads the trained model from disk
 - Provides a function to predict fraud for a processed transaction
