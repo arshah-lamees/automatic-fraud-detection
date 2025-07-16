@@ -1,0 +1,6 @@
+In your frontend/src/ folder, delete these files (if they exist):
+App.test.js
+logo.svg
+reportWebVitals.js
+setupTests.js
+Open App.js and remove all the default content.

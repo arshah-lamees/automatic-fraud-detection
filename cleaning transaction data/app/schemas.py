@@ -68,6 +68,9 @@ class TransactionInput(BaseModel):
     #     }
     # }
 
+class TransactionDB(TransactionInput):
+    id: int
+
 class PredictionResponse(BaseModel):
     """
     Pydantic model for prediction response.

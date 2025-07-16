@@ -8,9 +8,22 @@ Main FastAPI application for Fraud Detection API with database integration.
 from fastapi import FastAPI, Depends, HTTPException
 from sqlalchemy.orm import Session
 from app import models, schemas, crud, database, predict, preprocessing
+from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI(title="Fraud Detection API with DB", version="2.0.0")
 
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=[
+        "http://10.60.69.155:3000",  # Your frontend's actual address
+        "http://localhost:3000",     # (Optional) For local testing
+        "http://127.0.0.1:3000"      # (Optional) For local testing
+    ],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 # Create DB tables
 models.Base.metadata.create_all(bind=database.engine)
 
@@ -21,7 +34,7 @@ def get_db():
     finally:
         db.close()
 
-@app.post("/transaction", response_model=schemas.TransactionInput)
+@app.post("/transaction", response_model=schemas.TransactionDB)
 def create_transaction(transaction: schemas.TransactionInput, db: Session = Depends(get_db)):
     """
     Store a transaction in the database.
