@@ -7,7 +7,7 @@ Main FastAPI application for Fraud Detection API with database integration and u
 - /login: User login/authentication (user_auth)
 """
 
-from fastapi import FastAPI, Depends, HTTPException, status
+from fastapi import FastAPI, Depends, HTTPException, status, Header
 from sqlalchemy.orm import Session
 from app import models, schemas, crud, database, predict, preprocessing
 from fastapi.middleware.cors import CORSMiddleware
@@ -16,6 +16,7 @@ from app.user_auth.u_database import SessionLocal as UserSessionLocal, engine as
 from app.user_auth.u_models import Base as UserBase
 from app.user_auth.u_schemas import UserCreate, UserLogin, UserOut
 from app.user_auth.u_crud import create_user, authenticate_user, get_user_by_username, get_user_by_email, update_user_password
+from app.user_auth.u_utils import create_access_token, verify_access_token
 
 from pydantic import BaseModel
 
@@ -25,6 +26,11 @@ class ForgotPasswordRequest(BaseModel):
 class ResetPasswordRequest(BaseModel):
     email: str
     new_password: str
+
+class TokenResponse(BaseModel):
+    access_token: str
+    token_type: str = "bearer"
+    user: UserOut
 
 app = FastAPI(title="Fraud Detection API with DB and User Auth", version="2.0.0")
 
@@ -61,18 +67,34 @@ def get_user_db():
     finally:
         db.close()
 
+def get_current_user(authorization: str = Header(None)):
+    """
+    Dependency to get the current user from the JWT token in the Authorization header.
+    Raises 401 if token is missing or invalid.
+    """
+    if not authorization or not authorization.startswith("Bearer "):
+        raise HTTPException(status_code=401, detail="Missing or invalid Authorization header")
+    token = authorization.split(" ", 1)[1]
+    payload = verify_access_token(token)
+    if not payload:
+        raise HTTPException(status_code=401, detail="Invalid or expired token")
+    return payload
+
 @app.post("/register", response_model=UserOut, status_code=status.HTTP_201_CREATED)
 def register(user: UserCreate, db=Depends(get_user_db)):
     if get_user_by_username(db, user.username):
         raise HTTPException(status_code=400, detail="Username already registered")
     return create_user(db, user)
 
-@app.post("/login", response_model=UserOut)
+@app.post("/login", response_model=TokenResponse)
 def login(user: UserLogin, db=Depends(get_user_db)):
     db_user = authenticate_user(db, user.username, user.password)
     if not db_user:
         raise HTTPException(status_code=401, detail="Invalid username or password")
-    return db_user
+    # Create JWT token with user id and username
+    token_data = {"sub": db_user.username, "user_id": db_user.id}
+    access_token = create_access_token(token_data)
+    return {"access_token": access_token, "token_type": "bearer", "user": db_user}
 
 @app.post("/forgot-password")
 def forgot_password(request: ForgotPasswordRequest, db=Depends(get_user_db)):
@@ -97,16 +119,16 @@ def reset_password(request: ResetPasswordRequest, db=Depends(get_user_db)):
         raise HTTPException(status_code=404, detail="User not found. Please register.")
 
 @app.post("/transaction", response_model=schemas.TransactionDB)
-def create_transaction(transaction: schemas.TransactionInput, db: Session = Depends(get_db)):
+def create_transaction(transaction: schemas.TransactionInput, db: Session = Depends(get_db), user=Depends(get_current_user)):
     """
-    Store a transaction in the database.
+    Store a transaction in the database. Requires authentication.
     """
     return crud.create_transaction(db, transaction)
 
 @app.get("/predict/{transaction_id}", response_model=schemas.PredictionResponse)
-def predict_transaction(transaction_id: int, db: Session = Depends(get_db)):
+def predict_transaction(transaction_id: int, db: Session = Depends(get_db), user=Depends(get_current_user)):
     """
-    Predict fraud for a stored transaction by ID.
+    Predict fraud for a stored transaction by ID. Requires authentication.
     """
     db_transaction = crud.get_transaction(db, transaction_id)
     if not db_transaction:
