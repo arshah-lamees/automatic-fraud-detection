@@ -2,7 +2,6 @@
 app/schemas.py
 Defines all Pydantic models, Enums, and type hints for the Fraud Detection API.
 - Ensures strict validation and type safety
-- Ready for future database and frontend integration
 """
 
 from pydantic import BaseModel, Field
@@ -12,7 +11,6 @@ from typing import Optional
 class UseChipEnum(str, Enum):
     """
     Enum for transaction type (use_chip field).
-    Extend this as needed for more transaction types.
     """
     swipe = "Swipe Transaction"
     chip = "Chip Transaction"
@@ -20,7 +18,6 @@ class UseChipEnum(str, Enum):
 class TransactionInput(BaseModel):
     """
     Pydantic model for a single transaction input.
-    All fields are strictly typed and validated.
     """
     client_id: int = Field(..., examples=[123])
     card_id: int = Field(..., examples=[4567])
@@ -34,12 +31,12 @@ class TransactionInput(BaseModel):
     hour: int = Field(..., ge=0, le=23, examples=[14])
     dayofweek: int = Field(..., ge=0, le=6, examples=[2])
     is_weekend: int = Field(..., ge=0, le=1, examples=[0])
-    error_0: int = Field(..., ge=0, le=1, examples=[0])
-    error_1: int = Field(..., ge=0, le=1, examples=[0])
-    error_2: int = Field(..., ge=0, le=1, examples=[0])
-    error_3: int = Field(..., ge=0, le=1, examples=[0])
-    error_4: int = Field(..., ge=0, le=1, examples=[0])
-    error_5: int = Field(..., ge=0, le=1, examples=[0])
+    bad_cvv: int = Field(..., ge=0, le=1, examples=[0])
+    bad_card_number: int = Field(..., ge=0, le=1, examples=[0])
+    bad_pin: int = Field(..., ge=0, le=1, examples=[0])
+    bad_zipcode: int = Field(..., ge=0, le=1, examples=[0])
+    insufficient_balance: int = Field(..., ge=0, le=1, examples=[0])
+    technical_glitch: int = Field(..., ge=0, le=1, examples=[0])
 
     # model_config = {
     #     "json_schema_extra": {
@@ -57,18 +54,18 @@ class TransactionInput(BaseModel):
     #                 "hour": 14,
     #                 "dayofweek": 2,
     #                 "is_weekend": 0,
-    #                 "error_0": 0,
-    #                 "error_1": 0,
-    #                 "error_2": 0,
-    #                 "error_3": 0,
-    #                 "error_4": 0,
-    #                 "error_5": 0
+    #                 "bad_cvv": 0,
+    #                 "bad_card_number": 0,
+    #                 "bad_pin": 0,
+    #                 "bad_zipcode": 0,
+    #                 "insufficient_balance": 0,
+    #                 "technical_glitch": 0
     #             }
     #         ]
     #     }
     # }
 
-class TransactionDB(TransactionInput):
+class TransactionDB(TransactionInput):#Used when returning data from the database
     id: int
 
 class PredictionResponse(BaseModel):

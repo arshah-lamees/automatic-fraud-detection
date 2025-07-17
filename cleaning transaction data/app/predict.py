@@ -3,7 +3,7 @@ app/predict.py
 Handles model loading and prediction logic for the Fraud Detection API.
 - Loads the trained model from disk
 - Provides a function to predict fraud for a processed transaction
-- Modular and ready for future database/frontend integration
+
 """
 import numpy as np
 import os

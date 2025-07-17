@@ -2,7 +2,7 @@
 app/preprocessing.py
 Contains all preprocessing logic for the Fraud Detection API.
 - Cleans, encodes, and prepares transaction data for model prediction
-- Modular, type-safe, and ready for future database/frontend integration
+
 """
 
 from app.schemas import TransactionInput

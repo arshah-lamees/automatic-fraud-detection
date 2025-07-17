@@ -7,7 +7,7 @@ def main():
     columns = [
         'id', 'client_id', 'card_id', 'amount', 'use_chip', 'merchant_id', 'merchant_city',
         'merchant_state', 'zip', 'mcc', 'hour', 'dayofweek', 'is_weekend',
-        'error_0', 'error_1', 'error_2', 'error_3', 'error_4', 'error_5'
+        'bad_cvv', 'bad_card_number', 'bad_pin', 'bad_zipcode', 'insufficient_balance', 'technical_glitch'
     ]
     with open('transactions_report.txt', 'w', encoding='utf-8') as f:
         f.write(' '.join(f"{col:<15}" for col in columns) + '\n')
