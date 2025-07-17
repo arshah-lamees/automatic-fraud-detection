@@ -1,3 +1,10 @@
+/*
+BatchUploadForm.jsx
+-------------------
+Displays the batch upload page for future dataset uploads.
+- Placeholder for batch upload logic
+- Pure presentational component: no state or logic
+*/
 // src/components/BatchUploadForm.jsx
 import React from 'react';
 

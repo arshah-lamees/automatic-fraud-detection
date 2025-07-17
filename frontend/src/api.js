@@ -2,7 +2,7 @@
   import axios from 'axios';
 
   // Set your backend URL here
-  const BASE_URL = 'http://10.60.69.155:8000';
+  const BASE_URL = 'http://127.0.0.1:8000';
 
   export const submitTransaction = async (transactionData) => {
     // 1. Store the transaction

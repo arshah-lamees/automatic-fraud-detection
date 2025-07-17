@@ -1,13 +1,14 @@
+/*
+PredictionResult.jsx
+--------------------
+Displays the result of the fraud prediction.
+- Receives result, onAgain, and onDone as props
+- Pure presentational component: no state or logic
+- Lets user see the result, detect again, or finish
+*/
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
 
-const PredictionResult = ({ result, onAgain }) => {
-  const navigate = useNavigate();
-
-  const handleDone = () => {
-    navigate('/thankyou');
-  };
-
+const PredictionResult = ({ result, onAgain, onDone }) => {
   return (
     <div style={{ textAlign: 'center', marginTop: '5vh' }}>
       <h2>Prediction Result</h2>
@@ -23,7 +24,7 @@ const PredictionResult = ({ result, onAgain }) => {
         <button onClick={onAgain} style={{ marginRight: '1rem', padding: '0.5rem 2rem' }}>
           Detect Again
         </button>
-        <button onClick={handleDone} style={{ padding: '0.5rem 2rem' }}>
+        <button onClick={onDone} style={{ padding: '0.5rem 2rem' }}>
           Done
         </button>
       </div>

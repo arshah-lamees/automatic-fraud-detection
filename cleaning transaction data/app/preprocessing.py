@@ -27,8 +27,7 @@ def preprocess_transaction(input_data: TransactionInput) -> Dict[str, Any]:
     for col in ["use_chip", "merchant_city", "merchant_state"]:
         if col in mapping and col in data:
             data[col] = mapping[col].get(str(data[col]), -1)
-    # Ensure all features are present and in correct type
-    # (Model expects all features as numeric types)
+    # Ensure all features as numeric types)
     return data
 
 # You can add more preprocessing functions here for batch processing, cleaning, etc.

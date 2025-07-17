@@ -1,3 +1,10 @@
+/*
+WelcomePage.jsx
+---------------
+Displays the welcome screen and navigation options for the app.
+- Lets user choose between single transaction and batch upload
+- Pure presentational component: no state or logic
+*/
 // src/components/WelcomePage.jsx
 import React from 'react';
 import { useNavigate } from 'react-router-dom';

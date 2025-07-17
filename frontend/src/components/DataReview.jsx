@@ -1,3 +1,11 @@
+/*
+DataReview.jsx
+--------------
+Displays a review table of the transaction data before submission.
+- Receives formData, onEdit, and onSubmit as props
+- Pure presentational component: no state or logic
+- Lets user review, edit, or submit their transaction
+*/
 import React from 'react';
 
 const DataReview = ({ formData, onEdit, onSubmit }) => {

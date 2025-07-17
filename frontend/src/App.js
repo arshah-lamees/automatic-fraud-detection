@@ -28,28 +28,22 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import WelcomePage from './components/WelcomePage';
-import SingleTransactionForm from './components/SingleTransactionForm';
+import SingleTransactionFlowControl from './flowHelpers/FlowControl';
 import BatchUploadForm from './components/BatchUploadForm';
-
-// Simple Thank You component
-const ThankYou = () => (
-  <div style={{ textAlign: 'center', marginTop: '10vh' }}>
-    <h1>Thank You!</h1>
-    <p>Your submission has been received.</p>
-  </div>
-);
+import ThankYou from './components/ThankYou';
 
 function App() {
   return (
     <Router>
       <Routes>
         <Route path="/" element={<WelcomePage />} />
-        <Route path="/single" element={<SingleTransactionForm />} />
+        <Route path="/single" element={<SingleTransactionFlowControl />} />
         <Route path="/batch" element={<BatchUploadForm />} />
         <Route path="/thankyou" element={<ThankYou />} />
       </Routes>
     </Router>
   );
 }
+
 
 export default App;
