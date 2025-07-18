@@ -1,3 +1,11 @@
+/*
+  index.js
+  -------------------
+  This is the entry point for the Fraud Detection System frontend.
+  - Renders the main App component.
+  - Sets up the ReactDOM root and renders the app.
+  - Handles performance monitoring (optional).
+*/
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';

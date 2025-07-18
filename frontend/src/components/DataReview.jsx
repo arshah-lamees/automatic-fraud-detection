@@ -1,10 +1,11 @@
 /*
-DataReview.jsx
---------------
-Displays a review table of the transaction data before submission.
-- Receives formData, onEdit, and onSubmit as props
-- Pure presentational component: no state or logic
-- Lets user review, edit, or submit their transaction
+  DataReview.jsx
+  --------------
+  This component implements the review table for transaction data before submission in the Fraud Detection System frontend.
+  - Receives formData, onEdit, and onSubmit as props from the parent.
+  - Pure presentational component: displays all transaction fields in a table for user review.
+  - Lets the user review, edit, or submit their transaction data.
+  - Ensures data accuracy and gives users a chance to correct mistakes before final submission.
 */
 import React from 'react';
 

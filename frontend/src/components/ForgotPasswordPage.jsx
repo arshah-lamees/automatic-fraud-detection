@@ -1,3 +1,13 @@
+/*
+  ForgotPasswordPage.jsx
+  -------------------
+  This component implements the 'forgot password' functionality for the Fraud Detection System frontend.
+  - Allows users to request a password reset by verifying their email address.
+  - Handles form state, error display, and success feedback.
+  - On successful verification, provides a link to the reset password page with the email pre-filled.
+  - Provides navigation links to registration and login pages.
+
+*/
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 
@@ -32,7 +42,7 @@ export default function ForgotPasswordPage() {
   };
 
   return (
-    <div className="auth-container">
+    <div className="centered-container">
       <h2>Forgot Password</h2>
       <form onSubmit={handleSubmit}>
         <label>Email</label>

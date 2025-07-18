@@ -1,12 +1,11 @@
 /*
-SingleTransactionForm.jsx
-------------------------
-This component renders the form for entering a single transaction. It is a pure presentational component and does not manage any state or step logic. All data and handlers are received as props from the parent controller (SingleTransactionPage).
-
-Props:
-- form: The current form data object
-- onChange: Handler for input changes
-- onReview: Handler for the review button
+  SingleTransactionForm.jsx
+  ------------------------
+  This component implements the form for entering a single transaction in the Fraud Detection System frontend.
+  - Pure presentational component: receives all data and handlers as props from its parent.
+  - Renders a comprehensive form for all transaction fields, including dropdowns for categorical and error fields.
+  - Handles user input for transaction details and triggers the review action on submit.
+  - Ensures data is collected in the format expected by the backend for fraud prediction.
 */
 import React from 'react';
 

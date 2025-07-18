@@ -1,9 +1,11 @@
 /*
-BatchUploadForm.jsx
--------------------
-Displays the batch upload page for future dataset uploads.
-- Placeholder for batch upload logic
-- Pure presentational component: no state or logic
+  BatchUploadForm.jsx
+  -------------------
+  This component implements the batch upload page for the Fraud Detection System frontend.
+  - Serves as a placeholder for future batch dataset upload and prediction functionality.
+  - Pure presentational component: currently displays a message and heading.
+  - Will be extended to allow users to upload files for batch fraud detection.
+  - Maintains a user-friendly, accessible UI.
 */
 // src/components/BatchUploadForm.jsx
 import React from 'react';

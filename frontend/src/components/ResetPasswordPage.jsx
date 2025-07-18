@@ -1,11 +1,21 @@
+/*
+  ResetPasswordPage.jsx
+  -------------------
+  This component implements the password reset functionality for the Fraud Detection System frontend.
+  - Allows users to reset their password by providing their email and a new password.
+  - Handles form state, error display, and success feedback.
+  - Pre-fills the email field if the user comes from the forgot password page.
+  - On successful reset, shows a success message and redirects to the login page.
+  - Provides navigation link back to the login page.
+
+*/
 import React, { useState } from 'react';
 import { useLocation, useNavigate, Link } from 'react-router-dom';
 
 export default function ResetPasswordPage() {
   const location = useLocation();
   const navigate = useNavigate();
-  // If coming from ForgotPasswordPage, email may be in location.state
-  const initialEmail = location.state?.email || '';
+  const initialEmail = location.state?.email || '';// If coming from ForgotPasswordPage, email may be in location.state
   const [email, setEmail] = useState(initialEmail);
   const [newPassword, setNewPassword] = useState('');
   const [error, setError] = useState('');
@@ -34,7 +44,7 @@ export default function ResetPasswordPage() {
   };
 
   return (
-    <div className="auth-container">
+    <div className="centered-container">
       <h2>Reset Password</h2>
       <form onSubmit={handleSubmit}>
         <label>Email</label>

@@ -1,13 +1,14 @@
 /*
-frontend/src/flowHelpers/FlowControl.jsx
-Contains all flow control logic for the single transaction workflow in the frontend.
-- Manages all state for the single transaction process (form data, review mode, prediction result, loading state)
-- Handles logic for moving between steps: form entry, review, prediction result
-- Prepares and validates data before sending to the backend
-- Submits transaction data to the backend API and handles the response
-- Passes only the necessary data and handlers to presentational child components
-- Handles navigation (e.g., to the Thank You page) after completion
-- Ensures the UI updates correctly based on the current step
+  FlowControl.jsx
+  ---------------
+  This component manages the entire flow for the single transaction workflow in the Fraud Detection System frontend.
+  - Manages all state for the single transaction process (form data, review mode, prediction result, loading state).
+  - Handles logic for moving between steps: form entry, review, prediction result.
+  - Prepares and validates data before sending to the backend.
+  - Submits transaction data to the backend API and handles the response.
+  - Passes only the necessary data and handlers to presentational child components.
+  - Handles navigation (e.g., to the Thank You page) after completion.
+  - Ensures the UI updates correctly based on the current step.
 */
 
 

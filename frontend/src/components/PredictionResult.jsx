@@ -1,10 +1,11 @@
 /*
-PredictionResult.jsx
---------------------
-Displays the result of the fraud prediction.
-- Receives result, onAgain, and onDone as props
-- Pure presentational component: no state or logic
-- Lets user see the result, detect again, or finish
+  PredictionResult.jsx
+  --------------------
+  This component displays the result of the fraud prediction in the Fraud Detection System frontend.
+  - Receives result, onAgain, and onDone as props from the parent.
+  - Pure presentational component: no state or logic.
+  - Shows whether the transaction is predicted to be fraudulent or safe.
+  - Provides buttons for the user to detect again or finish the process.
 */
 import React from 'react';
 
@@ -19,7 +20,7 @@ const PredictionResult = ({ result, onAgain, onDone }) => {
             : '✅ This transaction is predicted to be SAFE.'}
         </strong>
       </p>
-      {/* You can add feature plots here in the next step */}
+      {/* plots will be added  here */}
       <div style={{ marginTop: '2rem' }}>
         <button onClick={onAgain} style={{ marginRight: '1rem', padding: '0.5rem 2rem' }}>
           Detect Again

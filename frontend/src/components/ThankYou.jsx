@@ -1,10 +1,10 @@
 /*
-ThankYou.jsx
-------------
-Displays a thank you message after the user completes the transaction flow.
-- Pure presentational component: no state or logic
+  ThankYou.jsx
+  ------------
+  This component displays a thank you message after the user completes the transaction flow in the Fraud Detection System frontend.
+  - Pure presentational component: no state or logic.
+  - Provides user feedback that their submission was received.
 */
-   // frontend/src/components/ThankYou.jsx
    import React from 'react';
 
    const ThankYou = () => (

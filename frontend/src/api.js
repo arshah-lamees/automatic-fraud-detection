@@ -1,7 +1,14 @@
-  // src/api.js
+  /*
+  api.js
+  -------------------
+  This file contains the API functions for the Fraud Detection System frontend.
+  - Handles authentication token management.
+  - Provides a base API fetch function with token handling.
+  - Implements transaction submission and prediction.
+  */
+
   import axios from 'axios';
 
-  // Set your backend URL here
   const BASE_URL = 'http://127.0.0.1:8000';
 
   let accessToken = localStorage.getItem('access_token') || null;

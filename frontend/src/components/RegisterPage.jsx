@@ -1,3 +1,13 @@
+/*
+  RegisterPage.jsx
+  -------------------
+  This component implements the user registration functionality for the Fraud Detection System frontend.
+  - Allows new users to create an account by providing a username, email, and password.
+  - Handles form state, error display, and success feedback.
+  - On successful registration, shows a success message and redirects to the login page.
+  - Provides navigation link back to the login page.
+
+*/
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 
@@ -32,7 +42,7 @@ export default function RegisterPage() {
   };
 
   return (
-    <div className="register-container">
+    <div className="centered-container">
       <h2>Register</h2>
       <form onSubmit={handleSubmit}>
         <div>

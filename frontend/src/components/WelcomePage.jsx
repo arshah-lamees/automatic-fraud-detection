@@ -1,9 +1,12 @@
 /*
-WelcomePage.jsx
----------------
-Displays the welcome screen and navigation options for the app.
-- Lets user choose between single transaction and batch upload
-- Now shows logged-in user info and logout button (JWT-aware)
+  WelcomePage.jsx
+  -------------------
+  This component implements the main dashboard/welcome screen for the Fraud Detection System frontend.
+  - Greets the logged-in user and displays their username (decoded from JWT).
+  - Provides a logout button to end the session.
+  - Offers navigation options for single transaction entry and batch upload.
+  - Ensures users can easily access the core features after logging in.
+  - Maintains a user-friendly, accessible UI.
 */
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
