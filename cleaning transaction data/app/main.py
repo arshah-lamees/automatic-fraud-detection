@@ -88,9 +88,9 @@ def register(user: UserCreate, db=Depends(get_user_db)):
 
 @app.post("/login", response_model=TokenResponse)
 def login(user: UserLogin, db=Depends(get_user_db)):
-    db_user = authenticate_user(db, user.username, user.password)
+    db_user = authenticate_user(db, user.identifier, user.password)
     if not db_user:
-        raise HTTPException(status_code=401, detail="Invalid username or password")
+        raise HTTPException(status_code=401, detail="Invalid username/email or password")
     # Create JWT token with user id and username
     token_data = {"sub": db_user.username, "user_id": db_user.id}
     access_token = create_access_token(token_data)

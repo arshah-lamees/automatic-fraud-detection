@@ -4,6 +4,9 @@ Utility functions for password hashing and verification.
 """
 
 from passlib.context import CryptContext
+# JWT utilities (for authentication)
+from jose import JWTError, jwt
+from datetime import datetime, timedelta
 
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
@@ -13,9 +16,6 @@ def hash_password(password: str) -> str:
 def verify_password(plain_password: str, hashed_password: str) -> bool:
     return pwd_context.verify(plain_password, hashed_password)
 
-# JWT utilities (for authentication)
-from jose import JWTError, jwt
-from datetime import datetime, timedelta
 
 # SECRET_KEY should be kept safe! For dev, you can use a hardcoded string.
 SECRET_KEY = "your-secret-key"  # CHANGE THIS IN PRODUCTION
